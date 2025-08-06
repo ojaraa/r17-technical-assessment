@@ -10,7 +10,7 @@ export default function SummaryCard({total, title, percentageChange} : SummaryCa
   return (
     <div className="bg-[#34616f11] gap-4 p-4 rounded-lg flex flex-col justify-between items-start">
         <div className="flex justify-between items-center w-full ">
-            <h4 className="text-[17px] font-bold">{title}</h4>
+            <h4 className="text-sm sm:text-[17px] font-bold">{title}</h4>
             <Ellipsis/>
         </div>
 

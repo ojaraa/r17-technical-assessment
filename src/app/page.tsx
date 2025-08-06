@@ -47,17 +47,19 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex items center ">
-        {users?.slice(0, 4).map((user) => (
-          <CustomAvatar
-            key={user.id}
-            src={user.avatar}
-            fallback={user.firstName.charAt(0)}
-            className=" ml-[-10] w-8 h-8 rounded-full cursor-pointer object-cover font-extrabold"
-          />
-        ))}
+      <div className="flex items-center gap-x-2">
+        <div className="flex ">
+          {users?.slice(0, 4).map((user) => (
+            <CustomAvatar
+              src={user.avatar}
+              key={user.id}
+              fallback={user.firstName.charAt(0)}
+              className=" ml-[-10] w-8 h-8 rounded-full cursor-pointer object-cover font-extrabold"
+            />
+          ))}
+        </div>
 
-        {users?.length > 0 && (
+         {users?.length > 0 && (
           <p className="text-sm text-[#1b252863] font-medium">
             {users.length <= 3
               ? users.map((user) => user.firstName).join(", ")
@@ -99,8 +101,7 @@ export default function Home() {
         ))}
       </div>
 
-        {activeTab === "overview" && <Overview />}
-
+      {activeTab === "overview" && <Overview />}
     </div>
   );
 }
