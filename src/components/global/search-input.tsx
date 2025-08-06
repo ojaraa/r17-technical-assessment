@@ -11,7 +11,7 @@ export default function SearchInput() {
         onClick={() => setIsOpen(!isOpen)}
         className="p-2 rounded-full cursor-pointer transition-colors"
       >
-        <Search className="h-5 w-5" />
+        <Search className="w-4 h-4 sm:h-5 sm:w-5" />
       </button>
 
       <input
@@ -24,6 +24,13 @@ export default function SearchInput() {
           ${isOpen ? "w-56 opacity-100 scale-100" : "w-0 opacity-0 scale-95 pointer-events-none"}
         `}
       />
+      <button
+        onClick={() => setIsOpen(false)}
+        className={`absolute right-2 top-1/2 transform -translate-y-1/2 transition-opacity ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+      >
+        <Search className="w-4 h-4 sm:h-5 sm:w-5" />
+      </button>
+
     </div>
   );
 }

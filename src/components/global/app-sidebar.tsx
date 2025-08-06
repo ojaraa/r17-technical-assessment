@@ -15,7 +15,7 @@ import Link from "next/link";
 import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
-const timmana = Timmana({
+export const timmana = Timmana({
   variable: "--font-timmana",
   subsets: ["latin"],
   weight: ["400"],
@@ -25,8 +25,8 @@ export function AppSidebar() {
   const pathName = usePathname();
 
   return (
-    <Sidebar collapsible="icon" className="py-3 px-6 !bg-white">
-      <SidebarHeader className="flex items-center gap-x-3">
+    <Sidebar collapsible="icon" className="py-3 px-6 ">
+      <SidebarHeader className="flex items-center gap-x-2">
             <SidebarTrigger />
         <div className="flex gap-x-2 ">
 
@@ -35,10 +35,10 @@ export function AppSidebar() {
             alt="Logo"
             width={32}
             height={32}
-            className="h-8 w-8 object-cover border"
+            className="h-8 w-8 object-cover r"
           />
           <h1
-            className={`${timmana.className} text-2xl text-[#437D8E] font-bold border m-0`}
+            className={`${timmana.className} text-2xl text-[#437D8E] font-bold  m-0`}
           >
             FinTrack
           </h1>

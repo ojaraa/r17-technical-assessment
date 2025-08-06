@@ -28,7 +28,7 @@ export default function RootLayout({
           <SidebarProvider>
             <AppSidebar />
             <main className="w-ful min-h-screen flex-1 py-2  px-5 ">
-              {/* <SidebarTrigger /> */}
+          
               <Navbar />
               {children}
             </main>
