@@ -11,12 +11,17 @@ import Overview from "@/components/overview";
 const tabs = [
   { id: 1, key: "overview", label: "Overview" },
   { id: 2, key: "transactions", label: "Transactions" },
+
 ];
+
+
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(tabs[0].key);
+
+  
   return (
-    <div className="grid gap-y-8 sm:gap-y-6">
+    <div className="grid gap-y-8 sm:gap-y-6 pb-8">
       <div className="flex flex-col sm:flex-row sm:justify-between gap-4 ">
         <div className="flex items-center gap-x-3">
           <h1 className="text-xl sm:text-[34px] text-[#1B2528] font-bold ">

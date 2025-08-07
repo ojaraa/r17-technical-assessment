@@ -26,19 +26,18 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon" className="py-3 px-6 ">
-      <SidebarHeader className="flex items-center gap-x-2">
-            <SidebarTrigger />
+      <SidebarHeader className="flex flex-row !items-center gap-x-2">
+        <SidebarTrigger />
         <div className="flex gap-x-2 ">
-
           <Image
             src="/assets/images/logomark.png"
             alt="Logo"
             width={32}
             height={32}
-            className="h-8 w-8 object-cover r"
+            className="w-6 h-6 sm:h-8 sm:w-8 object-cover r"
           />
           <h1
-            className={`${timmana.className} text-2xl text-[#437D8E] font-bold  m-0`}
+            className={`${timmana.className} text-2xl sm:text-[32px] text-[#437D8E] font-bold  m-0`}
           >
             FinTrack
           </h1>

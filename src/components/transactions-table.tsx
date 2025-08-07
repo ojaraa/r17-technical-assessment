@@ -2,6 +2,7 @@
 import { useState } from "react";
 import StatusBadge from "./global/status-badge";
 import Image from "next/image";
+import TableSkelton from "./skeletons/table-skeleton";
 
 interface Transaction {
   id: string;
@@ -89,6 +90,7 @@ const sampleData: Transaction[] = [
 
 function TransactionsTable() {
   const [sortAsc, setSortAsc] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const sortedData = [...sampleData].sort((a, b) => {
     const dateA = new Date(a.date).getTime();
@@ -96,7 +98,14 @@ function TransactionsTable() {
     return sortAsc ? dateA - dateB : dateB - dateA;
   });
 
-  const toggleSort = () => setSortAsc(!sortAsc);
+  // const toggleSort = () => setSortAsc(!sortAsc);
+  const toggleSort = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setSortAsc(!sortAsc);
+      setLoading(false);
+    } , 5000)
+  }
   return (
     <div className="!overflow-x-auto !w-full ">
       <table className=" text-sm text-left text-nowrap  table-fixed sm:table-auto min-w-full">
@@ -129,7 +138,11 @@ function TransactionsTable() {
           </tr>
         </thead>
         <tbody>
-          {sortedData.length === 0 && (
+          {loading ? (
+            Array.from({ length: 5 }).map((_, index) => (
+              <TableSkelton key={index} />
+            ))
+          ) : sortedData.length === 0 ? (
             <tr>
               <td
                 colSpan={5}
@@ -138,25 +151,27 @@ function TransactionsTable() {
                 No transactions to display
               </td>
             </tr>
+          ) : (
+            sortedData.map((tx) => (
+              <tr key={tx.id} className="border-t  hover:bg-[#34616f11] ">
+                <td className="px-4 py-3 text-[#1B2528] ">{tx.date}</td>
+                <td className="px-4 py-3 text-[#1B2528]">{tx.remark}</td>
+                <td className="px-4 py-3 text-[#1B2528]">
+                  {tx.amount < 0 ? "-" : ""}$
+                  {Math.abs(tx.amount).toLocaleString()}
+                </td>
+                <td className="px-4 py-3 text-[#1B2528]">{tx.currency}</td>
+                <td className="px-4 py-3">
+                  <StatusBadge
+                    activeStatus={tx.type === "Credit"}
+                    title={tx.type}
+                  />
+                </td>
+              </tr>
+            ))
           )}
 
-          {sortedData.map((tx) => (
-            <tr key={tx.id} className="border-t border hover:bg-[#34616f11] ">
-              <td className="px-4 py-3 text-[#1B2528] ">{tx.date}</td>
-              <td className="px-4 py-3 text-[#1B2528]">{tx.remark}</td>
-              <td className="px-4 py-3 text-[#1B2528]">
-                {tx.amount < 0 ? "-" : ""}$
-                {Math.abs(tx.amount).toLocaleString()}
-              </td>
-              <td className="px-4 py-3 text-[#1B2528]">{tx.currency}</td>
-              <td className="px-4 py-3">
-                <StatusBadge
-                  activeStatus={tx.type === "Credit"}
-                  title={tx.type}
-                />
-              </td>
-            </tr>
-          ))}
+          {}
         </tbody>
       </table>
     </div>
