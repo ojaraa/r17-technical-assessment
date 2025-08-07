@@ -104,7 +104,7 @@ function TransactionsTable() {
     setTimeout(() => {
       setSortAsc(!sortAsc);
       setLoading(false);
-    } , 5000)
+    } , 1000)
   }
   return (
     <div className="!overflow-x-auto !w-full ">
